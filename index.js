@@ -1,5 +1,5 @@
 
-var finances = [
+let finances = [
 ['Jan-2010', 867884],
 ['Feb-2010', 984655],
 ['Mar-2010', 322013],
@@ -88,15 +88,53 @@ var finances = [
 ['Feb-2017', 671099]
 ];
 
+let financesNew = [];
+let averageArr = [];
+
+let totalMonths = finances.length;
 let totalAmount = 0;
+let changeValue = 0;
 
 
-for (let i = 0; i < finances.length; i++) {
-    const [date, amount] = finances[i];
-    totalAmount += +finances[i][1];
+function compareNumber(a,b) {
+    return a - b;
 }
 
 
+for (let i = 0; i < totalMonths; i++) {
+    const [date, amount] = finances[i];
+    changeValue = finances[i][1];
+    financesNew.push(changeValue);
+    totalAmount += +changeValue;
+}
 
-console.log(finances.length);
+for(var i = 1;i<=financesNew.length-1;i++) {
+  averageArr.push(financesNew[i] - financesNew[i-1]);
+  averageArr.sort(compareNumber);
+  
+}
+
+
+const initialValue = 0;
+const sumWithInitial = averageArr.reduce(
+    (accumulator, currentValue) => accumulator + currentValue,
+    initialValue
+    );
+    
+let bigIncrease = averageArr.pop();
+let bigDecrease = averageArr[0];
+    
+
+
+
+console.log(totalMonths);
 console.log(totalAmount);
+console.log(sumWithInitial/(totalMonths-1));
+console.log(bigIncrease);
+console.log(bigDecrease);
+
+
+
+
+
+

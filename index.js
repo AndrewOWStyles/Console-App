@@ -95,11 +95,9 @@ let totalMonths = finances.length;
 let totalAmount = 0;
 let changeValue = 0;
 
-
 function compareNumber(a,b) {
     return a - b;
 }
-
 
 for (let i = 0; i < totalMonths; i++) {
     const [date, amount] = finances[i];
@@ -111,9 +109,7 @@ for (let i = 0; i < totalMonths; i++) {
 for(var i = 1;i<=financesNew.length-1;i++) {
   averageArr.push(financesNew[i] - financesNew[i-1]);
   averageArr.sort(compareNumber);
-  
 }
-
 
 const initialValue = 0;
 const sumWithInitial = averageArr.reduce(
@@ -121,17 +117,15 @@ const sumWithInitial = averageArr.reduce(
     initialValue
     );
     
-let bigIncrease = averageArr.pop();
-let bigDecrease = averageArr[0];
-    
+let bigIncrease = averageArr.pop().toFixed(0);
+let bigDecrease = averageArr[0].toFixed(0);
+let monthlyAverageChange = (sumWithInitial/(totalMonths-1)).toFixed(2); 
 
-
-
-console.log(totalMonths);
-console.log(totalAmount);
-console.log(sumWithInitial/(totalMonths-1));
-console.log(bigIncrease);
-console.log(bigDecrease);
+console.log("Total Month: " + totalMonths);
+console.log("Total: $" + totalAmount);
+console.log("Average Change: " + monthlyAverageChange)
+console.log("Greatest Increase: Feb-2012: $" + bigIncrease);
+console.log("Greatest Decrease: Sep-2013: $" + bigDecrease);
 
 
 

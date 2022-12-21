@@ -88,17 +88,22 @@ let finances = [
 ['Feb-2017', 671099]
 ];
 
+// empty Arrays for .push
 let financesNew = [];
 let averageArr = [];
 
+// variable to track how man months in array
 let totalMonths = finances.length;
+// storage variables
 let totalAmount = 0;
 let changeValue = 0;
 
+// compare function for sorting array
 function compareNumber(a,b) {
     return a - b;
 }
 
+// loop to find total amount by making a new array
 for (let i = 0; i < totalMonths; i++) {
     const [date, amount] = finances[i];
     changeValue = finances[i][1];
@@ -106,20 +111,25 @@ for (let i = 0; i < totalMonths; i++) {
     totalAmount += +changeValue;
 }
 
+// loop to find difference between curr and prev element and put into new array and sort
 for(var i = 1;i<=financesNew.length-1;i++) {
   averageArr.push(financesNew[i] - financesNew[i-1]);
   averageArr.sort(compareNumber);
 }
 
+// find total sum of array
 const initialValue = 0;
 const sumWithInitial = averageArr.reduce(
     (accumulator, currentValue) => accumulator + currentValue,
     initialValue
     );
-    
+
+
+let monthlyAverageChange = (sumWithInitial/(totalMonths-1)).toFixed(2);
+// .pop takes the last element in array which when sorted will be the biggest number
 let bigIncrease = averageArr.pop().toFixed(0);
+// [0] targets the first element in array which when sorted will be the smallest number
 let bigDecrease = averageArr[0].toFixed(0);
-let monthlyAverageChange = (sumWithInitial/(totalMonths-1)).toFixed(2); 
 
 console.log("Total Month: " + totalMonths);
 console.log("Total: $" + totalAmount);
